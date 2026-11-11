@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Ely  - Una Dedicatoria Especial</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        burgundy: {
+                            800: '#4A0E17',
+                            900: '#2A080C',
+                        },
+                        rosewood: '#5C1D24',
+                        blush: '#F9E4E8',
+                        gold: {
+                            300: '#F6E05E',
+                            400: '#ECC94B',
+                            500: '#D69E2E',
+                            600: '#B7791F',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        cursive: ['"Great Vibes"', 'cursive'],
+                        handwriting: ['"Dancing Script"', 'cursive'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Glassmorphism y sombras personalizadas */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(183, 121, 31, 0.15);
+        }
+
+        /* Sobre e Interacciones 3D */
+        .envelope-wrapper {
+            perspective: 1000px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            background: #801b2c;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        @media (min-width: 640px) {
+            .envelope {
+                width: 420px;
+                height: 280px;
+            }
+        }
+
+        .envelope:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(236, 201, 75, 0.3);
+        }
+
+        /* Solapa superior del sobre */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 130px solid #a3283b;
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out, z-index 0.6s;
+            z-index: 5;
+        }
+
+        @media (min-width: 640px) {
+            .envelope-flap {
+                border-left-width: 210px;
+                border-right-width: 210px;
+                border-top-width: 165px;
+            }
+        }
+
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        /* Sello de cera */
+        .wax-seal {
+            position: absolute;
+            top: 105px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #d4af37 0%, #aa7c11 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+            z-index: 6;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            border: 2px solid #f6e05e;
+        }
+
+        @media (min-width: 640px) {
+            .wax-seal {
+                top: 135px;
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .envelope.open .wax-seal {
+            opacity: 0;
+            transform: translateX(-50%) scale(0.5);
+            pointer-events: none;
+        }
+
+        /* Detalle dorado de bordes */
+        .golden-border {
+            border: 2px solid transparent;
+            border-image: linear-gradient(to bottom right, #f6e05e, #b7791f, #f6e05e) 1;
+        }
+
+        /* Animación suave para revelado */
+        .fade-in-up {
+            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Cursor de mecanografía */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 0.8s infinite;
+            color: #b7791f;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Ocultar barra de desplazamiento manteniendo funcionalidad */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-burgundy-900 text-gray-800 font-sans min-h-screen overflow-x-hidden relative selection:bg-rosewood selection:text-blush">
+
+    <!-- Canvas para Partículas de Fondo (Pétalos y Estrellas) -->
+    <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Canvas interactivo para clics de corazones -->
+    <canvas id="heartCanvas" class="fixed inset-0 pointer-events-none z-40"></canvas>
+
+    <!-- Contenedor Principal -->
+    <div class="relative z-10 min-h-screen flex flex-col justify-between items-center p-4 sm:p-6 md:p-8">
+
+        <!-- Barra Superior de Control de Música y Configuración -->
+        <header class="w-full max-w-4xl flex justify-between items-center py-4 px-2">
+            <div class="flex items-center space-x-2">
+                <span class="text-gold-400 font-handwriting text-2xl sm:text-3xl tracking-wide"> MI ELY FER </span>
+            </div>
+            
+            <div class="flex items-center space-x-3">
+                <!-- Botón Música -->
+                <button id="musicToggleBtn" title="Reproducir / Pausar Música Ambient" class="bg-burgundy-800/80 hover:bg-rosewood border border-gold-500/40 text-gold-300 p-2.5 sm:px-4 sm:py-2 rounded-full transition-all duration-300 flex items-center space-x-2 shadow-lg backdrop-blur-sm text-sm">
+                    <i id="musicIcon" class="fas fa-music"></i>
+                    <span id="musicText" class="hidden sm:inline"><a href="https://open.spotify.com/intl-es/track/33sVMI3oIildS18RA5GCqg?si=5e9a1c7c2ae040fd" target="_blank">Si Te Quedas, Qué</a> </span>
+                </button>
+
+                <!-- Botón Personalizar -->
+                <button id="editBtn" title="Personalizar Nombres y Mensaje" class="bg-burgundy-800/80 hover:bg-rosewood border border-gold-500/40 text-gold-300 p-2.5 sm:px-4 sm:py-2 rounded-full transition-all duration-300 flex items-center space-x-2 shadow-lg backdrop-blur-sm text-sm">
+                    <i class="fas fa-pen-fancy"></i>
+                    <span class="hidden sm:inline"><a href="https://wa.me/qr/GMIJFRDXFPVHI1?s=r" target="_blank">Responder a LEOO</a></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- SECCIÓN 1: VISTA PREVIA DEL SOBRE (Paso inicial) -->
+        <div id="envelopeSection" class="my-auto flex flex-col items-center justify-center text-center transition-all duration-700">
+            <h1 class="text-3xl sm:text-5xl font-serif text-blush mb-3 tracking-wide font-normal leading-tight">
+                Tengo una carta especial para ti
+            </h1>
+            <p class="text-gold-300/80 font-handwriting text-xl sm:text-2xl mb-8">
+                Toca el sobre para abrir la dedicatoria
+            </p>
+
+            <!-- Objeto Sobre INTERACTIVO -->
+            <div class="envelope-wrapper my-4">
+                <div id="envelope" class="envelope flex items-center justify-center">
+                    <div class="envelope-flap"></div>
+                    <div class="wax-seal">
+                        <i class="fas fa-heart text-burgundy-900 text-xl"></i>
+                    </div>
+                    <!-- Papel asomando -->
+                    <div class="absolute bottom-3 w-[88%] h-[80%] bg-blush rounded-t-sm flex flex-col justify-center items-center p-4 border border-gold-400/30 shadow-inner">
+                        <span class="font-cursive text-2xl sm:text-3xl text-burgundy-900" id="envelopeToText">Para Mi Persona Favorita</span>
+                        <span class="text-xs text-rosewood/70 mt-2 font-sans tracking-widest uppercase">Con todo mi amor</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-xs text-blush/60 mt-6 tracking-wider uppercase animate-pulse">
+                Click en el sello para abrir
+            </p>
+        </div>
+
+
+        <!-- SECCIÓN 2: TARJETA DEL POEMA (Oculta al inicio) -->
+        <main id="poemSection" class="hidden w-full max-w-2xl my-auto fade-in-up">
+            <div class="glass-card rounded-2xl p-6 sm:p-10 md:p-12 relative overflow-hidden my-6">
+                
+                <!-- Esquinas Decorativas Doradas -->
+                <div class="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-gold-500/60"></div>
+                <div class="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-gold-500/60"></div>
+                <div class="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-gold-500/60"></div>
+                <div class="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-gold-500/60"></div>
+
+                <!-- Encabezado de la Carta -->
+                <div class="text-center mb-8 border-b border-gold-500/20 pb-6">
+                    <span class="text-gold-600 uppercase tracking-widest text-xs font-semibold">Una Dedicatoria Eterna</span>
+                    <h2 id="recipientHeader" class="text-3xl sm:text-4xl md:text-5xl font-serif text-burgundy-900 mt-2 font-bold italic">
+                        Para Mi Amor
+                    </h2>
+                    <div class="flex justify-center items-center mt-3 space-x-2">
+                        <span class="h-[1px] w-12 bg-gold-400"></span>
+                        <i class="fas fa-heart text-rose-500 text-sm"></i>
+                        <span class="h-[1px] w-12 bg-gold-400"></span>
+                    </div>
+                </div>
+
+                <!-- Cuerpo del Poema (Efecto Escritura) -->
+                <div id="poemContainer" class="min-h-[220px] sm:min-h-[260px] text-center my-6 flex flex-col justify-center items-center">
+                    <div id="poemText" class="font-serif text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-800 whitespace-pre-line italic">
+                        <!-- El texto se escribirá vía JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Firma / Mensaje Final -->
+                <div class="mt-8 pt-6 border-t border-gold-500/20 text-right">
+                    <p class="text-xs uppercase tracking-wider text-gray-500">Siempre tuyo  <br> LEOOO,</p>
+                    <p id="senderSignature" class="font-cursive text-3xl sm:text-4xl text-burgundy-800 mt-1">
+                        Con eterno amor
+                    </p>
+                </div>
+
+                <!-- Botón Interactivo de Acción Especial -->
+                <div class="mt-8 flex justify-center">
+                    <button id="sendLoveBtn" class="group relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium text-burgundy-900 transition duration-300 ease-out border-2 border-gold-500 rounded-full shadow-md hover:shadow-gold-500/30">
+                        <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-amber-100 via-rose-100 to-amber-200"></span>
+                        <span class="absolute top-0 left-0 w-full bg-gradient-to-b from-white/40 to-transparent h-1/2"></span>
+                        <span class="relative flex items-center space-x-2 font-handwriting text-xl text-burgundy-900 font-bold">
+                            <i class="fas fa-heart text-rose-600 group-hover:scale-125 transition-transform duration-300"></i>
+                            <span>Enviar un Beso a LEOO</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Pie de página suave -->
+        <footer class="w-full text-center py-4 text-xs text-blush/50 font-light">
+            Creado por tu persona favorita LEOO <i class="fas fa-heart text-rose-400"></i> 
+        </footer>
+    </div>
+
+    <!-- MODAL DE PERSONALIZACIÓN -->
+    <div id="customModal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-gold-400/40 relative max-h-[90vh] overflow-y-auto no-scrollbar">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="text-2xl font-serif font-bold text-burgundy-900 mb-2">Personaliza la Dedicatoria</h3>
+            <p class="text-xs text-gray-500 mb-6">Modifica los detalles para adaptar el mensaje a tu persona especial.</p>
+
+            <form id="customForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Para (Destinatario)</label>
+                    <input type="text" id="inputRecipient" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent outline-none text-sm" placeholder="Ej: Mi Amada Sofía">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">De (Tu Nombre o Firma)</label>
+                    <input type="text" id="inputSender" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent outline-none text-sm" placeholder="Ej: Alejandro">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Poema / Verso</label>
+                    <textarea id="inputPoem" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent outline-none text-sm font-serif leading-relaxed" placeholder="Escribe aquí tu poema..."></textarea>
+                </div>
+
+                <div class="pt-4 flex justify-end space-x-3">
+                    <button type="button" id="cancelModalBtn" class="px-5 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">Cancelar</button>
+                    <button type="submit" class="px-6 py-2 text-sm bg-burgundy-800 text-gold-300 font-semibold rounded-lg hover:bg-rosewood shadow-md transition-colors">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- 1. ESTADO Y DATOS PREDETERMINADOS ---
+        const defaultPoem = `Si el tiempo fuera un lienzo infinito,
+pintaría tu sonrisa en cada rincón del cielo.
+Eres el susurro suave en la brisa de la noche,
+y la luz eterna que despierta todos mis sueños.
+
+En la inmensidad de este universo,
+hallar tu corazón fue mi mayor fortuna.
+Te amo hoy, mañana y en cada vida.`;
+
+        let appData = {
+            recipient: "Mi Persona Favorita",
+            sender: "Con todo mi corazón",
+            poem: defaultPoem
+        };
+
+        let isTyping = false;
+        let typingTimeout = null;
+
+        // --- 2. ELEMENTOS DEL DOM ---
+        const envelope = document.getElementById('envelope');
+        const envelopeSection = document.getElementById('envelopeSection');
+        const poemSection = document.getElementById('poemSection');
+        const recipientHeader = document.getElementById('recipientHeader');
+        const senderSignature = document.getElementById('senderSignature');
+        const poemTextElement = document.getElementById('poemText');
+        const envelopeToText = document.getElementById('envelopeToText');
+
+        const editBtn = document.getElementById('editBtn');
+        const customModal = document.getElementById('customModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelModalBtn = document.getElementById('cancelModalBtn');
+        const customForm = document.getElementById('customForm');
+        const inputRecipient = document.getElementById('inputRecipient');
+        const inputSender = document.getElementById('inputSender');
+        const inputPoem = document.getElementById('inputPoem');
+
+        const sendLoveBtn = document.getElementById('sendLoveBtn');
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        const musicIcon = document.getElementById('musicIcon');
+
+        // --- 3. ANIMACIÓN DEL SOBRE Y REVELADO DE POEMA ---
+        envelope.addEventListener('click', () => {
+            if (envelope.classList.contains('open')) return;
+            
+            envelope.classList.add('open');
+            playCardOpenSound();
+
+            setTimeout(() => {
+                envelopeSection.classList.add('opacity-0', '-translate-y-10');
+                setTimeout(() => {
+                    envelopeSection.classList.add('hidden');
+                    poemSection.classList.remove('hidden');
+                    startTypewriterEffect();
+                    // Intentar iniciar música suave automáticamente tras interacción
+                    if (!audioPlaying) {
+                        toggleMusic();
+                    }
+                }, 600);
+            }, 800);
+        });
+
+        // EFECTO DE ESCRITURA A MÁQUINA (Typewriter)
+        function startTypewriterEffect() {
+            clearTimeout(typingTimeout);
+            poemTextElement.innerHTML = '';
+            poemTextElement.classList.add('typing-cursor');
+            
+            const fullText = appData.poem;
+            let index = 0;
+            isTyping = true;
+
+            function typeNextChar() {
+                if (index < fullText.length) {
+                    const char = fullText.charAt(index);
+                    if (char === '\n') {
+                        poemTextElement.innerHTML += '<br>';
+                    } else {
+                        poemTextElement.innerHTML += char;
+                    }
+                    index++;
+                    // Variación suave de tiempo para dinamismo humano
+                    const speed = char === ',' || char === '.' ? 220 : 35;
+                    typingTimeout = setTimeout(typeNextChar, speed);
+                } else {
+                    isTyping = false;
+                    poemTextElement.classList.remove('typing-cursor');
+                }
+            }
+
+            typeNextChar();
+        }
+
+        // --- 4. SISTEMA DE MÚSICA DE FONDO (Audio de "Y si te quedas, qué" - Santiago Cruz) ---
+        // Audio HTML5 configurado con la canción de Santiago Cruz
+        const bgAudio = new Audio('https://ia801503.us.archive.org/15/items/santiago-cruz-y-si-te-quedas-que/Santiago%20Cruz%20-%20Y%20si%20te%20quedas%20qu%C3%A9.mp3');
+        bgAudio.loop = true;
+        let audioPlaying = false;
+
+        function toggleMusic() {
+            if (!audioPlaying) {
+                bgAudio.play().then(() => {
+                    audioPlaying = true;
+                    musicIcon.className = "fas fa-volume-high text-gold-400 animate-pulse";
+                }).catch(e => {
+                    console.log("Error al reproducir audio:", e);
+                });
+            } else {
+                bgAudio.pause();
+                audioPlaying = false;
+                musicIcon.className = "fas fa-music";
+            }
+        }
+
+        musicToggleBtn.addEventListener('click', toggleMusic);
+
+        // EFECTO DE SONIDO AL ABRIR LA CARTA (Sintetizado)
+        function playCardOpenSound() {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const audioCtx = new AudioContext();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.4);
+                
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.5);
+            } catch(e) {}
+        }
+
+
+
+
+        // --- 6. CANVAS 1: FONDO DE PÉTALOS Y DESTELLOS DORMIDOS ---
+        const bgCanvas = document.getElementById('bgCanvas');
+        const bgCtx = bgCanvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+
+        function resizeBgCanvas() {
+            width = bgCanvas.width = window.innerWidth;
+            height = bgCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeBgCanvas);
+        resizeBgCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = -20;
+                this.size = Math.random() * 8 + 4;
+                this.speedY = Math.random() * 1.2 + 0.6;
+                this.speedX = Math.random() * 0.8 - 0.4;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 2;
+                this.opacity = Math.random() * 0.6 + 0.3;
+                this.type = Math.random() > 0.3 ? 'petal' : 'sparkle';
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y * 0.01) + this.speedX;
+                this.rotation += this.rotationSpeed;
+
+                if (this.y > height + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                bgCtx.save();
+                bgCtx.translate(this.x, this.y);
+                bgCtx.rotate((this.rotation * Math.PI) / 180);
+                bgCtx.globalAlpha = this.opacity;
+
+                if (this.type === 'petal') {
+                    // Dibujar un pétalo suave rojo/rosa
+                    bgCtx.fillStyle = '#E63946';
+                    bgCtx.beginPath();
+                    bgCtx.moveTo(0, 0);
+                    bgCtx.bezierCurveTo(-this.size, -this.size, -this.size, this.size, 0, this.size * 1.5);
+                    bgCtx.bezierCurveTo(this.size, this.size, this.size, -this.size, 0, 0);
+                    bgCtx.fill();
+                } else {
+                    // Dibujar destello dorado
+                    bgCtx.fillStyle = '#F6E05E';
+                    bgCtx.beginPath();
+                    bgCtx.arc(0, 0, this.size * 0.3, 0, Math.PI * 2);
+                    bgCtx.fill();
+                }
+
+                bgCtx.restore();
+            }
+        }
+
+        // Crear partículas iniciales
+        for (let i = 0; i < 45; i++) {
+            const p = new Particle();
+            p.y = Math.random() * height; // Distribuir por todo el alto inicialmente
+            particles.push(p);
+        }
+
+        function animateBg() {
+            bgCtx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateBg);
+        }
+        animateBg();
+
+
+        // --- 7. CANVAS 2: LLUVIA INTERACTIVA DE CORAZONES AL HACER CLICK ---
+        const heartCanvas = document.getElementById('heartCanvas');
+        const heartCtx = heartCanvas.getContext('2d');
+
+        function resizeHeartCanvas() {
+            heartCanvas.width = window.innerWidth;
+            heartCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeHeartCanvas);
+        resizeHeartCanvas();
+
+        let floatingHearts = [];
+
+        class FloatingHeart {
+            constructor(x, y) {
+                this.x = x || Math.random() * heartCanvas.width;
+                this.y = y || heartCanvas.height + 20;
+                this.size = Math.random() * 20 + 12;
+                this.speedY = Math.random() * 3 + 2;
+                this.speedX = (Math.random() - 0.5) * 3;
+                this.opacity = 1;
+                this.color = `hsl(${Math.random() * 20 + 340}, 85%, 60%)`;
+            }
+
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                this.opacity -= 0.008;
+            }
+
+            draw() {
+                heartCtx.save();
+                heartCtx.globalAlpha = Math.max(0, this.opacity);
+                heartCtx.translate(this.x, this.y);
+                
+                heartCtx.fillStyle = this.color;
+                heartCtx.beginPath();
+                const d = this.size;
+                // Dibujar forma de corazón con curvas Bézier
+                heartCtx.moveTo(0, 0);
+                heartCtx.bezierCurveTo(-d / 2, -d / 2, -d, d / 3, 0, d);
+                heartCtx.bezierCurveTo(d, d / 3, d / 2, -d / 2, 0, 0);
+                heartCtx.fill();
+
+                heartCtx.restore();
+            }
+        }
+
+        function animateHearts() {
+            heartCtx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
+            for (let i = floatingHearts.length - 1; i >= 0; i--) {
+                const h = floatingHearts[i];
+                h.update();
+                h.draw();
+                if (h.opacity <= 0) {
+                    floatingHearts.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(animateHearts);
+        }
+        animateHearts();
+
+        // Lanzar una oleada de corazones al presionar el botón de abrazo
+        sendLoveBtn.addEventListener('click', (e) => {
+            const rect = sendLoveBtn.getBoundingClientRect();
+            const clickX = rect.left + rect.width / 2;
+            const clickY = rect.top;
+
+            for (let i = 0; i < 35; i++) {
+                setTimeout(() => {
+                    floatingHearts.push(new FloatingHeart(
+                        clickX + (Math.random() - 0.5) * 100,
+                        clickY
+                    ));
+                }, i * 35);
+            }
+        });
+
+        // Permitir hacer clic en cualquier lugar para soltar un corazón flotante
+        window.addEventListener('click', (e) => {
+            // Evitar spawn de corazones si se hace click en controles o modales
+            if (e.target.closest('button') || e.target.closest('#customModal') || e.target.closest('#envelope')) return;
+            floatingHearts.push(new FloatingHeart(e.clientX, e.clientY));
+        });
+
+        // Inicializar datos en el DOM al cargar
+        updateDOMContent();
+    </script>
+</body>
+</html>
